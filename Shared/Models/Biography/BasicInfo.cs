@@ -13,5 +13,6 @@ namespace Shared.Models.Biography
         public string Website { get; set; }
 
         public string AboutMe { get; set; }
+        
     }
 }

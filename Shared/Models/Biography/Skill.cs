@@ -5,6 +5,5 @@ namespace Shared.Models.Biography
         public string Name { get; set; }
 
         public string Expertise { get; set; }
-
     }
 }
