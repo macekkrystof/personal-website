@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Azure.Cosmos.Table;
 
-namespace PersonalWebsite.Api
+namespace PersonalWebsite.Api.Data
 {
     public class CloudStorageAccountFactory
     {
@@ -11,7 +11,7 @@ namespace PersonalWebsite.Api
             this.storageConnectionString = storageConnectionString;
         }
         
-        public CloudStorageAccount CreateStorageAccountFromConnectionString()
+        public CloudStorageAccount CreateStorageAccount()
         {
             CloudStorageAccount storageAccount;
             try

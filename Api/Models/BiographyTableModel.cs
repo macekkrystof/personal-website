@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System;
 using Microsoft.Azure.Cosmos.Table;
 
-namespace Api.Models
+namespace PersonalWebsite.Api.Models
 {
     internal class BiographyTableModel : TableEntity
     {
 
         public BiographyTableModel(Biography biography)
         {
-            RowKey = biography.Id.ToString();
+            RowKey = biography.Id != Guid.Empty ? biography.Id.ToString() : null;
             LanguageCode = biography.LanguageCode;
             AvatarLink = biography.AvatarLink;
             BasicInfoTitle = biography.BasicInfoTitle;
