@@ -17,29 +17,25 @@ using PersonalWebsite.Api.Data;
 
 namespace PersonalWebsite.Api
 {
-    public class SaveNewBiographyFunction
+    public class GetBiographyByLanguageFunction
     {
         private readonly BiographyRepository biographyRepository;
-        public SaveNewBiographyFunction(BiographyRepository biographyRepository)
+        public GetBiographyByLanguageFunction(BiographyRepository biographyRepository)
         {
             this.biographyRepository = biographyRepository;
         }
 
-        [FunctionName("SaveNewBiography")]
+        [FunctionName("GetBiographyByLanguage")]
         public async Task<IActionResult> Run(
 
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var biography = JsonConvert.DeserializeObject<Biography>(requestBody); 
+            string languageCode = req.Query["languageCode"];
 
-            var result = await biographyRepository.SaveBiographyAsync(biography);
+            var biography = biographyRepository.GetBiographyByLanguageCode(languageCode);
 
-            if(result)
-                return new OkResult();
-
-            return new BadRequestResult();
+            return new JsonResult(biography);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Shared.Models.Biography;
 using PersonalWebsite.Api.Models;
 using System;
+using System.Linq;
 
 namespace PersonalWebsite.Api.Data
 {
@@ -14,12 +15,15 @@ namespace PersonalWebsite.Api.Data
             storageAccount = cloudStorageAccountFactory.CreateStorageAccount();
         }
 
-        public async Task<bool> SaveNewBiographyAsync(Biography biography)
+        public async Task<bool> SaveBiographyAsync(Biography biography)
         {
             var table = GetCloudTable();
             await table.CreateIfNotExistsAsync();
 
-            biography.Id = Guid.NewGuid();
+            if(biography.Id == Guid.Empty)
+            {
+                biography.Id = Guid.NewGuid();
+            }
             var biographyTableModel = new BiographyTableModel(biography);
 
             try
@@ -39,6 +43,18 @@ namespace PersonalWebsite.Api.Data
             }
         }
 
+        public Biography GetBiographyByLanguageCode(string languageCode)
+        {
+            var table = GetCloudTable();
+            TableQuery<BiographyTableModel> query = new TableQuery<BiographyTableModel>().Where(
+                TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, languageCode));
+                
+            return table
+            .ExecuteQuery<BiographyTableModel>(query)?
+            .FirstOrDefault()?
+            .GetBiography();
+        }
+        
         private CloudTable GetCloudTable()
         {
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient(new TableClientConfiguration());

@@ -9,9 +9,13 @@ namespace PersonalWebsite.Api.Models
     internal class BiographyTableModel : TableEntity
     {
 
+        public BiographyTableModel()
+        {
+            
+        }
         public BiographyTableModel(Biography biography)
         {
-            RowKey = biography.Id != Guid.Empty ? biography.Id.ToString() : null;
+            RowKey = biography.Id.ToString();
             LanguageCode = biography.LanguageCode;
             AvatarLink = biography.AvatarLink;
             BasicInfoTitle = biography.BasicInfoTitle;
@@ -31,7 +35,6 @@ namespace PersonalWebsite.Api.Models
             HobbiesTitle = biography.HobbiesTitle;
             Hobbies = JsonConvert.SerializeObject(biography.Hobbies);
         }
-
         public Biography GetBiography()
         {
             return new Biography
@@ -55,7 +58,6 @@ namespace PersonalWebsite.Api.Models
                 Hobbies = JsonConvert.DeserializeObject<List<string>>(this.Hobbies),
             };
         }
-
         private string languageCode;
         public string LanguageCode
         {
@@ -66,7 +68,6 @@ namespace PersonalWebsite.Api.Models
                 PartitionKey = value;
             }
         }
-
         public string AvatarLink { get; set; }
 
         public string BasicInfoTitle { get; set; }
