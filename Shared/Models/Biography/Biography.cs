@@ -14,6 +14,8 @@ namespace Shared.Models.Biography
 
         public BasicInfo BasicInfo { get; set; }
 
+        public SocialMedia SocialMedia { get; set; }
+
         public string EmploymentsTitle { get; set; }
 
         public List<Employment> Employments { get; set; }

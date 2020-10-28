@@ -20,6 +20,7 @@ namespace PersonalWebsite.Api.Models
             AvatarLink = biography.AvatarLink;
             BasicInfoTitle = biography.BasicInfoTitle;
             BasicInfo = JsonConvert.SerializeObject(biography.BasicInfo);
+            SocialMedia = JsonConvert.SerializeObject(biography.SocialMedia);
             EmploymentsTitle = biography.EmploymentsTitle;
             Employments = JsonConvert.SerializeObject(biography.Employments);
             EducationsTitle = biography.EducationsTitle;
@@ -42,6 +43,7 @@ namespace PersonalWebsite.Api.Models
                 Id = Guid.Parse(RowKey),
                 BasicInfoTitle = this.BasicInfoTitle,
                 BasicInfo = JsonConvert.DeserializeObject<BasicInfo>(this.BasicInfo),
+                SocialMedia = JsonConvert.DeserializeObject<SocialMedia>(this.SocialMedia),
                 EmploymentsTitle = this.EmploymentsTitle,
                 Employments = JsonConvert.DeserializeObject<List<Employment>>(this.Employments),
                 EducationsTitle = this.EducationsTitle,
@@ -73,6 +75,8 @@ namespace PersonalWebsite.Api.Models
         public string BasicInfoTitle { get; set; }
 
         public string BasicInfo { get; set; }
+
+        public string SocialMedia { get; set; }
 
         public string EmploymentsTitle { get; set; }
 
