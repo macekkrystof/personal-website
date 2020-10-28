@@ -1,0 +1,16 @@
+// Import variables
+@import "./_variables.scss";
+
+// Import Bootstrap
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+// Global CSS
+@import "./_global.scss";
+
+// Components
+@import "./components/_sidenav.scss";
+@import "./components/_icons.scss";
+
+// Sections
+@import "./sections/_resume-section.scss";
