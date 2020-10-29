@@ -1,4 +1,4 @@
-namespace Shared.Models.Biography
+namespace PersonalWebsite.Shared.Models.Biography
 {
     public class Certificate
     {

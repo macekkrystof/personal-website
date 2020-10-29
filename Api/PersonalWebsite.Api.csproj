@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Shared\PersonalWebsite.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

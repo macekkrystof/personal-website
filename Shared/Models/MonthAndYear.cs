@@ -1,4 +1,4 @@
-namespace Shared.Models
+namespace PersonalWebsite.Shared.Models
 {
     public struct MonthAndYear
     {
