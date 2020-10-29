@@ -39,3 +39,7 @@
         target: "#sideNav",
     });
 })(jQuery); // End of use strict
+
+navigatorLanguage = function () {  
+    return Promise.resolve(navigator.language);  
+}; 

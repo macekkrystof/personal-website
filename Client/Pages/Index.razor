@@ -1,7 +1,24 @@
 ﻿@page "/"
+@using PersonalWebsite.Shared.Models
+@using System.Net.Http
+@inject HttpClient httpClient;
+@inject IJSRuntime JSRuntime;
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    
+    public Biography Biography { get; set; }
+    
+    public async Task<string> GetBrowserLanguage()  
+    {  
+        string code = await JSRuntime.InvokeAsync<string>("navigatorLanguage");
+        return code.Substring(0, 2);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Biography = await httpClient.GetFromJsonAsync<Biography>($"api/GetBiography?languageCode={await GetBrowserLanguage()}");
+    }
+
+}

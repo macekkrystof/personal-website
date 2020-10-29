@@ -1,4 +1,4 @@
-using Shared.Models.Biography;
+using PersonalWebsite.Shared.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
@@ -42,24 +42,25 @@ namespace PersonalWebsite.Api.Models
             {
                 Id = Guid.Parse(RowKey),
                 BasicInfoTitle = this.BasicInfoTitle,
-                BasicInfo = JsonConvert.DeserializeObject<BasicInfo>(this.BasicInfo),
-                SocialMedia = JsonConvert.DeserializeObject<SocialMedia>(this.SocialMedia),
+                BasicInfo = JsonConvert.DeserializeObject<BasicInfo>(this.BasicInfo ?? string.Empty),
+                SocialMedia = JsonConvert.DeserializeObject<SocialMedia>(this.SocialMedia ?? string.Empty),
                 EmploymentsTitle = this.EmploymentsTitle,
-                Employments = JsonConvert.DeserializeObject<List<Employment>>(this.Employments),
+                Employments = JsonConvert.DeserializeObject<List<Employment>>(this.Employments ?? string.Empty),
                 EducationsTitle = this.EducationsTitle,
-                Educations = JsonConvert.DeserializeObject<List<Education>>(this.Educations),
+                Educations = JsonConvert.DeserializeObject<List<Education>>(this.Educations ?? string.Empty),
                 SkillsTitle = this.SkillsTitle,
-                Skills = JsonConvert.DeserializeObject<List<Skill>>(this.Skills),
+                Skills = JsonConvert.DeserializeObject<List<Skill>>(this.Skills ?? string.Empty),
                 VolunteeringActivitiesTitle = this.VolunteeringActivitiesTitle,
-                VolunteeringActivities = JsonConvert.DeserializeObject<List<Employment>>(this.VolunteeringActivities),
+                VolunteeringActivities = JsonConvert.DeserializeObject<List<Employment>>(this.VolunteeringActivities ?? string.Empty),
                 CertificatesTitle = this.CertificatesTitle,
-                Certificates = JsonConvert.DeserializeObject<List<Certificate>>(this.Certificates),
+                Certificates = JsonConvert.DeserializeObject<List<Certificate>>(this.Certificates ?? string.Empty),
                 PublicationsTitle = this.PublicationsTitle,
-                Publications = JsonConvert.DeserializeObject<List<Publication>>(this.Publications),
+                Publications = JsonConvert.DeserializeObject<List<Publication>>(this.Publications ?? string.Empty),
                 HobbiesTitle = this.HobbiesTitle,
-                Hobbies = JsonConvert.DeserializeObject<List<string>>(this.Hobbies),
+                Hobbies = JsonConvert.DeserializeObject<List<string>>(this.Hobbies ?? string.Empty),
             };
         }
+        
         private string languageCode;
         public string LanguageCode
         {

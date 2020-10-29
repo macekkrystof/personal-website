@@ -12,28 +12,27 @@ using Azure.Storage.Blobs;
 using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Azure.Documents;
 using Newtonsoft.Json;
-using Shared.Models.Biography;
 using PersonalWebsite.Api.Data;
 
 namespace PersonalWebsite.Api
 {
-    public class GetBiographyByLanguageFunction
+    public class GetBiographyFunction
     {
         private readonly BiographyRepository biographyRepository;
-        public GetBiographyByLanguageFunction(BiographyRepository biographyRepository)
+        public GetBiographyFunction(BiographyRepository biographyRepository)
         {
             this.biographyRepository = biographyRepository;
         }
 
-        [FunctionName("GetBiographyByLanguage")]
+        [FunctionName("GetBiography")]
         public async Task<IActionResult> Run(
 
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            string languageCode = req.Query["languageCode"];
+            string prefferedLanguageCode = req.Query["languageCode"];
 
-            var biography = biographyRepository.GetBiographyByLanguageCode(languageCode);
+            var biography = biographyRepository.GetBiography(prefferedLanguageCode);
 
             return new JsonResult(biography);
         }

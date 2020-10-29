@@ -1,6 +1,6 @@
 using Microsoft.Azure.Cosmos.Table;
 using System.Threading.Tasks;
-using Shared.Models.Biography;
+using PersonalWebsite.Shared.Models;
 using PersonalWebsite.Api.Models;
 using System;
 using System.Linq;
@@ -32,7 +32,6 @@ namespace PersonalWebsite.Api.Data
 
                 TableResult result = await table.ExecuteAsync(insertOrMergeOperation);
                 BiographyTableModel insertedBiography = result.Result as BiographyTableModel;
-
                 return true;
             }
             catch (Exception e)
@@ -43,16 +42,26 @@ namespace PersonalWebsite.Api.Data
             }
         }
 
-        public Biography GetBiographyByLanguageCode(string languageCode)
+        public Biography GetBiography(string preferredLanguageCode)
         {
             var table = GetCloudTable();
-            TableQuery<BiographyTableModel> query = new TableQuery<BiographyTableModel>().Where(
-                TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, languageCode));
+            var preferredLanguageQuery = TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, preferredLanguageCode);
+            var englishLanguageQuery = TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, "en");
+            var anyLanguageQuery = TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.NotEqual, "");
                 
-            return table
+            TableQuery<BiographyTableModel> query = new TableQuery<BiographyTableModel>().Where(
+                TableQuery.CombineFilters(
+                TableQuery.CombineFilters(preferredLanguageQuery, TableOperators.Or, englishLanguageQuery),
+                TableOperators.Or,
+                anyLanguageQuery));
+
+
+            var biography = table
             .ExecuteQuery<BiographyTableModel>(query)?
             .FirstOrDefault()?
             .GetBiography();
+
+            return biography;
         }
         
         private CloudTable GetCloudTable()
