@@ -1,4 +1,4 @@
-namespace PersonalWebsite.Shared.Models.Biography
+namespace PersonalWebsite.Shared.Models
 {
     public class Education
     {

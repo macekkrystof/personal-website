@@ -12,7 +12,7 @@ using Azure.Storage.Blobs;
 using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Azure.Documents;
 using Newtonsoft.Json;
-using Shared.Models.Biography;
+using PersonalWebsite.Shared.Models;
 using PersonalWebsite.Api.Data;
 
 namespace PersonalWebsite.Api

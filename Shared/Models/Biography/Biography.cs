@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PersonalWebsite.Shared.Models.Biography
+namespace PersonalWebsite.Shared.Models
 {
     public class Biography
     {
