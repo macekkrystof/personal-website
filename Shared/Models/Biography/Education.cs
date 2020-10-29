@@ -12,6 +12,6 @@ namespace PersonalWebsite.Shared.Models
 
         public MonthAndYear MonthAndYearFrom { get; set; }
         
-        public MonthAndYear MonthAndYearTo { get; set; }
+        public MonthAndYear? MonthAndYearTo { get; set; }
     }
 }

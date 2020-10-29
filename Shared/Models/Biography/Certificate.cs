@@ -8,7 +8,7 @@ namespace PersonalWebsite.Shared.Models
 
         public MonthAndYear Issued { get; set; }
 
-        public MonthAndYear ValidUntil { get; set; }
+        public MonthAndYear? ValidUntil { get; set; }
 
         public string Link { get; set; }
     }
