@@ -41,6 +41,7 @@ namespace PersonalWebsite.Api.Models
             return new Biography
             {
                 Id = Guid.Parse(RowKey),
+                LanguageCode = this.PartitionKey,
                 BasicInfoTitle = this.BasicInfoTitle,
                 BasicInfo = JsonConvert.DeserializeObject<BasicInfo>(this.BasicInfo ?? string.Empty),
                 SocialMedia = JsonConvert.DeserializeObject<SocialMedia>(this.SocialMedia ?? string.Empty),
