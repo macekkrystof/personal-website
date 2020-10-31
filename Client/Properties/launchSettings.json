@@ -1,12 +1,4 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:54613",
-      "sslPort": 44351
-    }
-  },
   "profiles": {
     "BlazorSWA": {
       "commandName": "Project",
