@@ -1,0 +1,34 @@
+﻿@using PersonalWebsite.Shared.Models
+
+<div class="social-icons">
+    @if (!string.IsNullOrEmpty(SocialMedia?.FacebookUrl))
+    {
+        <a class="social-icon" target="_blank" href="@SocialMedia.FacebookUrl"><i class="fab fa-facebook-f"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(SocialMedia?.LinkedInUrl))
+    {
+        <a class="social-icon" target="_blank" href="@SocialMedia.LinkedInUrl"><i class="fab fa-linkedin-in"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(SocialMedia?.GithubUrl))
+    {
+        <a class="social-icon" target="_blank" href="@SocialMedia.GithubUrl"><i class="fab fa-github"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(SocialMedia?.InstagramUrl))
+    {
+        <a class="social-icon" target="_blank" href="@SocialMedia.InstagramUrl"><i class="fab fa-instagram"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(SocialMedia?.TwitterUrl))
+    {
+        <a class="social-icon" target="_blank" href="@SocialMedia.TwitterUrl"><i class="fab fa-twitter"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(SocialMedia?.YoutubeUrl))
+    {
+        <a class="social-icon" target="_blank" href="@SocialMedia.YoutubeUrl"><i class="fab fa-youtube"></i></a>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public SocialMedia SocialMedia { get; set; }
+}

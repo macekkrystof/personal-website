@@ -1,0 +1,25 @@
+﻿@using PersonalWebsite.Shared.Models
+
+<section class="resume-section" id="about">
+    <div class="resume-section-content">
+        <h1 class="mb-0">
+            @BasicInfo?.FirstName
+            <span class="text-primary">
+                @BasicInfo?.LastName
+            </span>
+        </h1>
+        <div class="subheading mb-5">
+            @BasicInfo?.Address.Street @BasicInfo?.Address.Number · @BasicInfo?.Address.City, @BasicInfo?.Address.PostCode · @BasicInfo?.Address.Country · @BasicInfo?.PhoneNumber ·
+            <a href="mailto:@(BasicInfo?.Email)">@(BasicInfo?.Email)</a>
+        </div>
+        <p class="lead mb-5">@BasicInfo?.AboutMe</p>
+        <SocialIcons SocialMedia="SocialMedia" />
+    </div>
+</section>
+@code {
+    [Parameter]
+    public BasicInfo BasicInfo { get; set; }
+
+    [Parameter]
+    public SocialMedia SocialMedia { get; set; }
+}
