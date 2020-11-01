@@ -11,5 +11,8 @@ namespace PersonalWebsite.Shared.Models
         public string FacebookUrl { get; set; } 
 
         public string YoutubeUrl { get; set; }
+
+        public string GithubUrl { get; set; }
+
     }
 }
