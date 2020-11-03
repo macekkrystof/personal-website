@@ -5,5 +5,10 @@ namespace PersonalWebsite.Shared.Models
         public int Month { get; set; }
 
         public int Year { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Month}/{Year}";
+        }
     }
 }

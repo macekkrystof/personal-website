@@ -1,0 +1,26 @@
+﻿@using PersonalWebsite.Shared.Models
+<section class="resume-section" id="employments">
+    <div class="resume-section-content">
+        <h2 class="mb-5">@EmploymentsTitle</h2>
+        @foreach (var e in EmploymentsList ?? new List<Employment>())
+        {
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">@e.PositionTitle</h3>
+                    <div class="subheading mb-3">@(!string.IsNullOrEmpty(e.CompanyName) ? $"{e.CompanyName} · " : string.Empty) @e.City @(!string.IsNullOrEmpty(e.Country) ? $", {e.Country}" : string.Empty) </div>
+                    <p>@e.Description</p>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">@e.MonthAndYearFrom.ToString() - @e.MonthAndYearTo?.ToString()</span></div>
+            </div>
+        }
+
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public List<Employment> EmploymentsList { get; set; }
+
+    [Parameter]
+    public string EmploymentsTitle { get; set; }
+}

@@ -1,0 +1,27 @@
+﻿@using PersonalWebsite.Shared.Models
+<section class="resume-section" id="education">
+    <div class="resume-section-content">
+        <h2 class="mb-5">@EducationsTitle</h2>
+        @foreach (var e in EducationsList ?? new List<Education>())
+        {
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">@e.SchoolName</h3>
+                    <div class="subheading mb-3">@e.EducationType</div>
+                    <div>@e.Course</div>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">@e.MonthAndYearFrom.ToString() - @e.MonthAndYearTo?.ToString()</span></div>
+            </div>
+        }
+
+    </div>
+</section>
+@code {
+
+    [Parameter]
+    public List<Education> EducationsList { get; set; }
+
+    [Parameter]
+    public string EducationsTitle { get; set; }
+
+}
