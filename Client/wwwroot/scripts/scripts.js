@@ -43,3 +43,7 @@
 navigatorLanguage = function () {  
     return Promise.resolve(navigator.language);  
 }; 
+
+window.setTitle = (title) => {
+    document.title = title;
+}

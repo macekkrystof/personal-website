@@ -42,6 +42,11 @@
             };
 
             Biography = await httpClient.GetFromJsonAsync<Biography>($"api/GetBiography?languageCode={await GetBrowserLanguage()}", options);
-            Console.WriteLine(Biography.BasicInfoTitle);
+            await SetHeadProperties();
+        }
+
+        private async Task SetHeadProperties()
+        {
+            await JSRuntime.InvokeVoidAsync("setTitle", $"{Biography?.BasicInfo?.FirstName} {Biography?.BasicInfo?.LastName}");
         }
     }
