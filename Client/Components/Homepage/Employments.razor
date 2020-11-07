@@ -10,7 +10,7 @@
                     <div class="subheading mb-3">@(!string.IsNullOrEmpty(e.CompanyName) ? $"{e.CompanyName} · " : string.Empty) @e.City @(!string.IsNullOrEmpty(e.Country) ? $", {e.Country}" : string.Empty) </div>
                     <p>@e.Description</p>
                 </div>
-                <div class="flex-shrink-0"><span class="text-primary">@e.MonthAndYearFrom.ToString() - @e.MonthAndYearTo?.ToString()</span></div>
+                <div class="flex-shrink-0"><span class="text-primary">@e.MonthAndYearFrom.ToString() @(e.MonthAndYearTo != null ? $"- {e.MonthAndYearTo}" : string.Empty)</span></div>
             </div>
         }
 

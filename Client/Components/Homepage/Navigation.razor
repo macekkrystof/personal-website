@@ -1,12 +1,11 @@
 ﻿@using PersonalWebsite.Shared.Models
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
         <span class="d-block d-lg-none">@($"{Biography?.BasicInfo?.FirstName} {Biography?.BasicInfo?.LastName}")</span>
-        <span class="d-none d-lg-block">
+        <span class="d-lg-block">
             <img class="img-fluid img-profile rounded-circle mx-auto mb-2"
-                 src="assets/img/profile.jpg" alt="" />
+                 src="@Biography?.AvatarLink" alt="" />
         </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -20,6 +19,7 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">@Biography?.EducationsTitle</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">@Biography?.SkillsTitle</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#publications">@Biography?.PublicationsTitle</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">@Biography?.CertificationsTitle</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hobbies">@Biography?.HobbiesTitle</a></li>
         </ul>
     </div>
