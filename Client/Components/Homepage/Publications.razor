@@ -1,0 +1,23 @@
+﻿@using PersonalWebsite.Shared.Models
+<section class="resume-section" id="publications">
+    <div class="resume-section-content">
+        <h2 class="mb-5">@PublicationsTitle</h2>
+        <ul class="fa-ul mb-0">
+            @foreach (var p in PublicationsList ?? new List<Publication>())
+            {
+                <li>
+                    <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                    @(p.Name) @(!string.IsNullOrEmpty(p.Description) ? $"- {p.Description}" : string.Empty) @(!string.IsNullOrEmpty(p.Publisher) ? $"- {p.Publisher}" : string.Empty) @(p.MonthAndYear != null ? $"- {p.MonthAndYear}" : string.Empty)
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public string PublicationsTitle { get; set; }
+
+    [Parameter]
+    public List<Publication> PublicationsList { get; set; }
+}
