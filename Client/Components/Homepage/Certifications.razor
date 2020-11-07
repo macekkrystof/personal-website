@@ -1,0 +1,35 @@
+﻿@using PersonalWebsite.Shared.Models
+<section class="resume-section" id="certifications">
+    <div class="resume-section-content">
+        <h2 class="mb-5">@CertificationsTitle</h2>
+        @foreach (var c in CertificationsList ?? new List<Certification>())
+        {
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">
+                        @if (!string.IsNullOrEmpty(c.Link))
+                        {
+                            <a target="_blank" href="@c.Link">@c.Name</a>
+                        }
+                        else
+                        {
+                            @c.Name
+                        }
+
+                    </h3>
+                    <div class="subheading mb-3"></div>
+                    <div>@c.IssuedBy</div>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">@c.Issued.ToString() @(c.ValidUntil != null ? $"- {c.ValidUntil}" : string.Empty)</span></div>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public string CertificationsTitle { get; set; }
+
+    [Parameter]
+    public List<Certification> CertificationsList { get; set; }
+}
