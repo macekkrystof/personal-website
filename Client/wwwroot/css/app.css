@@ -1,1 +1,7 @@
-﻿
+﻿.list-style-none {
+    list-style-type: none;
+}
+
+.skills-list {
+    font-size: 1.3rem;
+}
