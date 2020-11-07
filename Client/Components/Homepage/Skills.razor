@@ -1,0 +1,53 @@
+﻿@using PersonalWebsite.Shared.Models
+<section class="resume-section" id="skills">
+    <div class="resume-section-content">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-5">@SkillsTitle</h2>
+                <ul class="list-inline list-style-none skills-list">
+                    @for (int i = 0; i < SkillsList?.Count; i += 6)
+                    {
+                        <li class="list-inline-item">
+                            <ul class="pl-5">
+                                @foreach (var skill in SkillsList.Skip(i).Take(6))
+                                {
+                                    <li>@skill.Name @(!string.IsNullOrEmpty(skill.Expertise) ? $"- {skill.Expertise}" : string.Empty)</li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-5">@LanguagesTitle</h2>
+                <ul class="list-inline list-style-none skills-list">
+                    @for (int i = 0; i < LanguagesList?.Count; i += 3)
+                    {
+                        <li class="list-inline-item">
+                            <ul class="pl-5">
+                                @foreach (var lang in LanguagesList.Skip(i).Take(3))
+                                {
+                                    <li>@lang.Name @(!string.IsNullOrEmpty(lang.Level) ? $"- {lang.Level}" : string.Empty)</li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public string SkillsTitle { get; set; }
+
+    [Parameter]
+    public string LanguagesTitle { get; set; }
+
+    [Parameter]
+    public List<Skill> SkillsList { get; set; }
+
+    [Parameter]
+    public List<Language> LanguagesList { get; set; }
+}
