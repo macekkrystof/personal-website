@@ -13,13 +13,15 @@
         <hr class="m-0" />
         <Educations EducationsTitle=@Biography?.EducationsTitle EducationsList=Biography?.Educations />
         <hr class="m-0" />
-        <Skills SkillsTitle=@Biography?.SkillsTitle SkillsList=Biography?.Skills LanguagesTitle=@Biography?.LanguagesTitle LanguagesList=Biography?.Languages />
+        <SkillsAndLanguages SkillsTitle=@Biography?.SkillsTitle SkillsList=Biography?.Skills LanguagesTitle=@Biography?.LanguagesTitle LanguagesList=Biography?.Languages />
         <hr class="m-0" />
         <Publications PublicationsTitle=@Biography?.PublicationsTitle PublicationsList=Biography?.Publications />
         <hr class="m-0" />
         <Certifications CertificationsTitle=@Biography?.CertificationsTitle CertificationsList=@Biography?.Certifications />
         <hr class="m-0" />
-        <Hobbies HobbiesTitle=@Biography?.HobbiesTitle HobbiesText=@Biography?.HobbiesText />
+        <HobbiesAndVolunteering HobbiesTitle=@Biography?.HobbiesTitle HobbiesText=@Biography?.HobbiesText
+                 VolunteeringActivitiesTitle=@Biography?.VolunteeringActivitiesTitle
+                 VolunteeringActivitiesList=@Biography?.VolunteeringActivities/>
     </div>
 
     @code {
