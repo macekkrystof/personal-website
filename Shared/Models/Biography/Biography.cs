@@ -28,13 +28,17 @@ namespace PersonalWebsite.Shared.Models
 
         public List<Skill> Skills { get; set; }
 
+        public string LanguagesTitle { get; set; }
+
+        public List<Language> Languages { get; set; }
+
         public string VolunteeringActivitiesTitle { get; set; }
 
         public List<Employment> VolunteeringActivities { get; set; }
 
-        public string CertificatesTitle { get; set; }
+        public string CertificationsTitle { get; set; }
 
-        public List<Certificate> Certificates { get; set; }
+        public List<Certification> Certifications { get; set; }
 
         public string PublicationsTitle { get; set; }
 
@@ -42,7 +46,7 @@ namespace PersonalWebsite.Shared.Models
 
         public string HobbiesTitle { get; set; }
 
-        public List<string> Hobbies { get; set; }
+        public string HobbiesText { get; set; }
 
     }
 }

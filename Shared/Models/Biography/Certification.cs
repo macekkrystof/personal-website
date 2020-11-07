@@ -1,6 +1,6 @@
 namespace PersonalWebsite.Shared.Models
 {
-    public class Certificate
+    public class Certification
     {
         public string Name { get; set; }
 

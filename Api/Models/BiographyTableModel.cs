@@ -27,14 +27,16 @@ namespace PersonalWebsite.Api.Models
             Educations = JsonConvert.SerializeObject(biography.Educations);
             SkillsTitle = biography.SkillsTitle;
             Skills = JsonConvert.SerializeObject(biography.Skills);
+            LanguagesTitle = biography.LanguagesTitle;
+            Languages = JsonConvert.SerializeObject(biography.Languages);
             VolunteeringActivitiesTitle = biography.VolunteeringActivitiesTitle;
             VolunteeringActivities = JsonConvert.SerializeObject(biography.VolunteeringActivities);
-            CertificatesTitle = biography.CertificatesTitle;
-            Certificates = JsonConvert.SerializeObject(biography.Certificates);
+            CertificationsTitle = biography.CertificationsTitle;
+            Certifications = JsonConvert.SerializeObject(biography.Certifications);
             PublicationsTitle = biography.PublicationsTitle;
             Publications = JsonConvert.SerializeObject(biography.Publications);
             HobbiesTitle = biography.HobbiesTitle;
-            Hobbies = JsonConvert.SerializeObject(biography.Hobbies);
+            HobbiesText = biography.HobbiesText;
         }
         public Biography GetBiography()
         {
@@ -43,6 +45,7 @@ namespace PersonalWebsite.Api.Models
                 Id = Guid.Parse(RowKey),
                 LanguageCode = this.PartitionKey,
                 BasicInfoTitle = this.BasicInfoTitle,
+                AvatarLink = this.AvatarLink,
                 BasicInfo = JsonConvert.DeserializeObject<BasicInfo>(this.BasicInfo ?? string.Empty),
                 SocialMedia = JsonConvert.DeserializeObject<SocialMedia>(this.SocialMedia ?? string.Empty),
                 EmploymentsTitle = this.EmploymentsTitle,
@@ -51,14 +54,16 @@ namespace PersonalWebsite.Api.Models
                 Educations = JsonConvert.DeserializeObject<List<Education>>(this.Educations ?? string.Empty),
                 SkillsTitle = this.SkillsTitle,
                 Skills = JsonConvert.DeserializeObject<List<Skill>>(this.Skills ?? string.Empty),
+                LanguagesTitle = this.LanguagesTitle,
+                Languages = JsonConvert.DeserializeObject<List<Language>>(this.Languages ?? string.Empty),
                 VolunteeringActivitiesTitle = this.VolunteeringActivitiesTitle,
                 VolunteeringActivities = JsonConvert.DeserializeObject<List<Employment>>(this.VolunteeringActivities ?? string.Empty),
-                CertificatesTitle = this.CertificatesTitle,
-                Certificates = JsonConvert.DeserializeObject<List<Certificate>>(this.Certificates ?? string.Empty),
+                CertificationsTitle = this.CertificationsTitle,
+                Certifications = JsonConvert.DeserializeObject<List<Certification>>(this.Certifications ?? string.Empty),
                 PublicationsTitle = this.PublicationsTitle,
                 Publications = JsonConvert.DeserializeObject<List<Publication>>(this.Publications ?? string.Empty),
                 HobbiesTitle = this.HobbiesTitle,
-                Hobbies = JsonConvert.DeserializeObject<List<string>>(this.Hobbies ?? string.Empty),
+                HobbiesText = this.HobbiesText,
             };
         }
         
@@ -92,13 +97,17 @@ namespace PersonalWebsite.Api.Models
 
         public string Skills { get; set; }
 
+        public string LanguagesTitle { get; set; }
+
+        public string Languages { get; set; }
+
         public string VolunteeringActivitiesTitle { get; set; }
 
         public string VolunteeringActivities { get; set; }
 
-        public string CertificatesTitle { get; set; }
+        public string CertificationsTitle { get; set; }
 
-        public string Certificates { get; set; }
+        public string Certifications { get; set; }
 
         public string PublicationsTitle { get; set; }
 
@@ -106,7 +115,7 @@ namespace PersonalWebsite.Api.Models
 
         public string HobbiesTitle { get; set; }
 
-        public string Hobbies { get; set; }
+        public string HobbiesText { get; set; }
 
     }
 }

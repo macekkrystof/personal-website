@@ -4,15 +4,6 @@ namespace PersonalWebsite.Shared.Models
     {
         public string Name { get; set; }
 
-        public LanguageKnowledgeLevel Level { get; set; }
-    }
-    
-    public enum LanguageKnowledgeLevel  {
-        A1,
-        A2,
-        B1,
-        B2,
-        C1,
-        C2
+        public string Level { get; set; }
     }
 }
