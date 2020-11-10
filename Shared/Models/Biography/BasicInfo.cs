@@ -16,6 +16,8 @@ namespace PersonalWebsite.Shared.Models
 
         public string AboutMe { get; set; }
 
+        public string SiteDescription { get; set; }
+
         public Address Address { get; set; }
 
     }

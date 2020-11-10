@@ -47,3 +47,6 @@ navigatorLanguage = function () {
 window.setTitle = (title) => {
     document.title = title;
 }
+window.setDescription = (description) => {
+    document.querySelector('meta[name="description"]').setAttribute("content", description);
+}

@@ -34,6 +34,7 @@
             return code.Substring(0, 2);
         }
 
+
         protected override async Task OnInitializedAsync()
         {
             var options = new System.Text.Json.JsonSerializerOptions
@@ -48,5 +49,6 @@
         private async Task SetHeadProperties()
         {
             await JSRuntime.InvokeVoidAsync("setTitle", $"{Biography?.BasicInfo?.FirstName} {Biography?.BasicInfo?.LastName}");
+            await JSRuntime.InvokeVoidAsync("setDescription", Biography?.BasicInfo?.SiteDescription);
         }
     }
