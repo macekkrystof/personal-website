@@ -28,9 +28,6 @@ Used technologies and projects:
 * [jQuery]
 * [jQuery Easing]
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
 
 ### Todos
 
