@@ -5,50 +5,58 @@
 @inject HttpClient httpClient;
 @inject IJSRuntime JSRuntime;
 
-    <Navigation Biography=Biography />
-    <div class="container-fluid p-0">
-        <AboutMe BasicInfo=Biography?.BasicInfo SocialMedia=Biography?.SocialMedia />
-        <hr class="m-0" />
-        <Employments EmploymentsTitle=@Biography?.EmploymentsTitle EmploymentsList=Biography?.Employments />
-        <hr class="m-0" />
-        <Educations EducationsTitle=@Biography?.EducationsTitle EducationsList=Biography?.Educations />
-        <hr class="m-0" />
-        <SkillsAndLanguages SkillsTitle=@Biography?.SkillsTitle SkillsList=Biography?.Skills LanguagesTitle=@Biography?.LanguagesTitle LanguagesList=Biography?.Languages />
-        <hr class="m-0" />
-        <Publications PublicationsTitle=@Biography?.PublicationsTitle PublicationsList=Biography?.Publications />
-        <hr class="m-0" />
-        <Certifications CertificationsTitle=@Biography?.CertificationsTitle CertificationsList=@Biography?.Certifications />
-        <hr class="m-0" />
-        <HobbiesAndVolunteering HobbiesTitle=@Biography?.HobbiesTitle HobbiesText=@Biography?.HobbiesText
-                 VolunteeringActivitiesTitle=@Biography?.VolunteeringActivitiesTitle
-                 VolunteeringActivitiesList=@Biography?.VolunteeringActivities/>
-    </div>
-
-    @code {
-
-        public Biography Biography { get; set; }
-
-        public async Task<string> GetBrowserLanguage()
-        {
-            string code = await JSRuntime.InvokeAsync<string>("navigatorLanguage");
-            return code.Substring(0, 2);
-        }
-
-
-        protected override async Task OnInitializedAsync()
-        {
-            var options = new System.Text.Json.JsonSerializerOptions
-            {
-                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
-            };
-
-            Biography = await httpClient.GetFromJsonAsync<Biography>($"api/GetBiography?languageCode={await GetBrowserLanguage()}", options);
-            await SetHeadProperties();
-        }
-
-        private async Task SetHeadProperties()
-        {
-            await JSRuntime.InvokeVoidAsync("setTitle", $"{Biography?.BasicInfo?.FirstName} {Biography?.BasicInfo?.LastName}");
-            await JSRuntime.InvokeVoidAsync("setDescription", Biography?.BasicInfo?.SiteDescription);
-        }
+    @if (Biography != null)
+    {
+        <Navigation Biography=Biography />
+        <div class="container-fluid p-0">
+            <AboutMe BasicInfo=Biography?.BasicInfo SocialMedia=Biography?.SocialMedia />
+            <hr class="m-0" />
+            <Employments EmploymentsTitle=@Biography?.EmploymentsTitle EmploymentsList=Biography?.Employments />
+            <hr class="m-0" />
+            <Educations EducationsTitle=@Biography?.EducationsTitle EducationsList=Biography?.Educations />
+            <hr class="m-0" />
+            <SkillsAndLanguages SkillsTitle=@Biography?.SkillsTitle SkillsList=Biography?.Skills LanguagesTitle=@Biography?.LanguagesTitle LanguagesList=Biography?.Languages />
+            <hr class="m-0" />
+            <Publications PublicationsTitle=@Biography?.PublicationsTitle PublicationsList=Biography?.Publications />
+            <hr class="m-0" />
+            <Certifications CertificationsTitle=@Biography?.CertificationsTitle CertificationsList=@Biography?.Certifications />
+            <hr class="m-0" />
+            <HobbiesAndVolunteering HobbiesTitle=@Biography?.HobbiesTitle HobbiesText=@Biography?.HobbiesText
+                                    VolunteeringActivitiesTitle=@Biography?.VolunteeringActivitiesTitle
+                                    VolunteeringActivitiesList=@Biography?.VolunteeringActivities />
+        </div>
     }
+    else
+    {
+        <div class="loader"></div>
+    }
+
+
+@code {
+
+    public Biography Biography { get; set; }
+
+    public async Task<string> GetBrowserLanguage()
+    {
+        string code = await JSRuntime.InvokeAsync<string>("navigatorLanguage");
+        return code.Substring(0, 2);
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var options = new System.Text.Json.JsonSerializerOptions
+        {
+            PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
+        };
+
+        Biography = await httpClient.GetFromJsonAsync<Biography>($"api/GetBiography?languageCode={await GetBrowserLanguage()}", options);
+        await SetHeadProperties();
+    }
+
+    private async Task SetHeadProperties()
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", $"{Biography?.BasicInfo?.FirstName} {Biography?.BasicInfo?.LastName}");
+        await JSRuntime.InvokeVoidAsync("setDescription", Biography?.BasicInfo?.SiteDescription);
+    }
+}
