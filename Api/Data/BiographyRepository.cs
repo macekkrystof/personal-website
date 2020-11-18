@@ -4,6 +4,7 @@ using PersonalWebsite.Shared.Models;
 using PersonalWebsite.Api.Models;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace PersonalWebsite.Api.Data
 {
@@ -44,30 +45,42 @@ namespace PersonalWebsite.Api.Data
 
         public Biography GetBiography(string preferredLanguageCode)
         {
-            var table = GetCloudTable();
-            var preferredLanguageQuery = TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, preferredLanguageCode);
-            var englishLanguageQuery = TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, "en");
-            var anyLanguageQuery = TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.NotEqual, "");
-                
-            TableQuery<BiographyTableModel> query = new TableQuery<BiographyTableModel>().Where(
-                TableQuery.CombineFilters(
-                TableQuery.CombineFilters(preferredLanguageQuery, TableOperators.Or, englishLanguageQuery),
-                TableOperators.Or,
-                anyLanguageQuery));
+            var queries = BuildBiographyQueries(preferredLanguageCode);
+            var biography = ExecuteQueriesAndGetResult(queries);
 
-
-            var biography = table
-            .ExecuteQuery<BiographyTableModel>(query)?
-            .FirstOrDefault()?
-            .GetBiography();
-
-            return biography;
+            return biography?.GetBiography();
         }
-        
         private CloudTable GetCloudTable()
         {
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient(new TableClientConfiguration());
             return tableClient.GetTableReference("Biographies");
+        }
+
+        private List<string> BuildBiographyQueries(string preferredLanguageCode, string defaultLanguageCode = "en") => new List<string>
+            {
+                TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, preferredLanguageCode),
+                TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.Equal, defaultLanguageCode),
+                TableQuery.GenerateFilterCondition(nameof(BiographyTableModel.PartitionKey), QueryComparisons.NotEqual, ""),
+            };
+
+        private BiographyTableModel ExecuteQueriesAndGetResult(List<string> queries)
+        {
+            var table = GetCloudTable();
+            BiographyTableModel biography = null;
+
+            int index = 0;
+            do
+            {
+                biography = table
+                    .ExecuteQuery(new TableQuery<BiographyTableModel>()
+                    .Where(queries[index]))
+                    .FirstOrDefault();
+
+                index++;
+
+            } while (biography == null && index < queries.Count);
+
+            return biography;
         }
     }
 }
