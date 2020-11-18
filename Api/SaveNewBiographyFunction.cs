@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,24 +5,22 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using System.IO;
-using Azure;
-using Azure.Storage.Blobs;
-using Microsoft.Azure.Cosmos.Table;
-using Microsoft.Azure.Documents;
 using Newtonsoft.Json;
 using PersonalWebsite.Shared.Models;
 using PersonalWebsite.Api.Data;
+using PersonalWebsite.Api.Authorization;
 
 namespace PersonalWebsite.Api
 {
-    public class SaveNewBiographyFunction
+    public class SaveNewBiographyFunction : BaseAuthorizedFunction
     {
         private readonly BiographyRepository biographyRepository;
-        public SaveNewBiographyFunction(BiographyRepository biographyRepository)
+        public SaveNewBiographyFunction(BiographyRepository biographyRepository, IHttpContextAccessor a) : base(a)
         {
             this.biographyRepository = biographyRepository;
         }
 
+        [RoleAuthorize("Admin")]
         [FunctionName("SaveNewBiography")]
         public async Task<IActionResult> Run(
 
