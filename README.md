@@ -4,14 +4,12 @@
 
 Simple portfolio website powered by Blazor WebAssembly hosted in Azure Static Web Apps with Azure Functions + Storage backend. I made this as alternative for PDF CV. It's supposed to be extremely low cost solution, it's literally almost free to host. 
 
-You can see working website here: [kmacek.cz](https://www.kmacek.czm)
-
 # Features
 
   - Supports multiple language versions of website based on browser language. 
   - Responsive SPA
 
-For now you need to write data manually to Azure Table Storage but I'm working on CMS. 
+For data need to be written manually to Azure Table Storage but I'm working on CMS. 
 
 ### Tech
 
